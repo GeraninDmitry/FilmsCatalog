@@ -33,9 +33,13 @@ namespace FilmsCatalog
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDatabaseDeveloperPageExceptionFilter();            
+            services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
-            services.AddRazorPages();
+            IMvcBuilder builder = services.AddRazorPages();
+
+#if DEBUG
+            builder.AddRazorRuntimeCompilation();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

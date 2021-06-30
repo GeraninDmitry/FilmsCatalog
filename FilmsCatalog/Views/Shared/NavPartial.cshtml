@@ -1,0 +1,48 @@
+﻿
+<nav>
+
+    <a asp-controller="Home" asp-action="Index">
+        <h2 id="logo">FilmsCatalog</h2>
+    </a>
+
+    <div id="menu">
+
+        @{
+            if (User.Identity.IsAuthenticated)
+            {
+
+                <div>
+                    <a>
+                        <img src="~/img/icons/Star.svg" />
+                        <p>Список</p>
+                    </a>
+                </div>
+
+                <div>
+                    <a asp-controller="Account" asp-action="Logout" method="post">
+                        <img src="~/img/icons/Logout.svg" />
+                        <p>Выйти</p>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <a asp-area="" asp-controller="Account" asp-action="SignUp">
+                        <img src="~/img/icons/SignUp.svg" />
+                        <p>Регистрация</p>
+                    </a>
+                </div>
+
+                <div>
+                    <a asp-area="" asp-controller="Account" asp-action="SignIn">
+                        <img src="~/img/icons/SignIn.svg" />
+                        <p>Войти</p>
+                    </a>
+                </div>
+            }
+
+        }
+    </div>
+
+</nav>

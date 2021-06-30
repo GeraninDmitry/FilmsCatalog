@@ -1,33 +1,38 @@
-﻿@model SignInViewModel
+﻿
+<link rel="stylesheet" href="~/css/Account/SignIn.css" />
+
+@model SignInViewModel
 @{
     ViewData["Title"] = "Авторизация";
 }
 
-<h2>Авторизация</h2>
+<div id="SignInForm">
+    <h2>Авторизация</h2>
 
-<form asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl" method="post" style="margin-top: 2em;">
-    <div class="form-row">
-        <div class="form-group col-md-4 col-sm-6 col-12">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control">
-            <span asp-validation-for="Email" class="text-danger"></span>
+    <form asp-controller="Account" asp-action="SignIn" asp-route-returnUrl="@Model.ReturnUrl" method="post" style="margin-top: 2em;">
+        <div>
+            <div class="InputDiv">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-4 col-sm-6 col-12">
-            <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control">
-            <span asp-validation-for="Password" class="text-danger"></span>
+        <div>
+            <div class="InputDiv">
+                <label asp-for="Password"></label>
+                <input asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-            <input asp-for="RememberMe" class="form-check-input">
-            <label asp-for="RememberMe" class="form-check-label"></label>
+        <div>
+            <div id="RememberCheckbox">
+                <input asp-for="RememberMe">
+                <label asp-for="RememberMe"></label>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <button type="submit" class="btn btn-outline-primary">Войти</button>
-    </div>
-</form>
+        <div asp-validation-summary="ModelOnly" id="Errors"></div>
+        <div id="SignInButtonContainer">
+            <button type="submit" id="SignInButton">Войти</button>
+        </div>
+    </form>
+</div>
