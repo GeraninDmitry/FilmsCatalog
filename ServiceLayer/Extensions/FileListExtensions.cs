@@ -12,12 +12,23 @@ namespace ServiceLayer.Extensions
 {
     public static class FileListExtensions
     {
-        public static IQueryable<FilmViewModel> CreatePage(this IQueryable<Film> list, ApplicationDbContext m_DbDbContext, int page, int pageSize)
+        public static IQueryable<FilmViewModel> CreatePage(this IQueryable<Film> list, ApplicationDbContext dbDbContext, int page, int pageSize)
         {
-            var query = m_DbDbContext.FilmList
+            var query = dbDbContext
+				.FilmList
                 .AsNoTracking()
                 .OrderBy(film => film.PublishDate)
                 .Page(page, pageSize)
+                .ToViewModel();
+
+            return query;
+        }
+
+        public static IQueryable<FilmViewModel> FindFilm(this IQueryable<Film> list, ApplicationDbContext dbDbContext, string guid)
+        {
+            var query = dbDbContext
+				.FilmList
+                .Where(item => item.Guid == guid)
                 .ToViewModel();
 
             return query;
@@ -32,13 +43,13 @@ namespace ServiceLayer.Extensions
             return items;
         }
 
-        static IQueryable<FilmViewModel> ToViewModel(this IQueryable<Film> list)
+		public static IQueryable<FilmViewModel> ToViewModel(this IQueryable<Film> list)
         {
             return list.Select(film => new FilmViewModel()
             {
                 Description = film.Description,
                 Director = film.Director,
-                FilmId = film.FilmId,
+                Guid = film.Guid,
                 Name = film.Name,
                 Poster = ConvertByteToStringImg(film.Poster),
                 Publisher = film.Publisher,

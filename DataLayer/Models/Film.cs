@@ -9,6 +9,7 @@ namespace DataLayer.Models
     public class Film
     {
         public int FilmId { get; set; }
+		public string Guid { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int Year { get; set; }

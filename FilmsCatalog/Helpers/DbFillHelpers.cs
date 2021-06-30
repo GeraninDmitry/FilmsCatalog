@@ -56,7 +56,8 @@ namespace FilmsCatalog.Helpers
                     Year = 1997,
                     Publisher = "Default",
                     Name = "Семь лет в Тибете",
-                    PublishDate = DateTime.Now
+                    PublishDate = DateTime.Now,
+                    Guid = Guid.NewGuid().ToString()
                 });
             }
         }

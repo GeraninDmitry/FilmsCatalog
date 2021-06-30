@@ -1,0 +1,46 @@
+﻿@using DataLayer.ViewModels
+@model FilmViewModel
+
+<link rel="stylesheet" href="~/css/film/ShowFilmDetails.css" />
+
+@{
+
+    if (Model is FilmViewModel film)
+    {
+        <div id="film">
+
+            <div id="filmImageAndData">
+
+                <div id="filmImage">
+                    <img src="@film.Poster" />
+                </div>
+
+                <div id="filmData">
+
+                    <div id="filmDataHeader">
+                        <p id="filmName">@film.Name</p>
+                        <p id="filmAuthor">@film.Director</p>
+                    </div>
+
+                    <div id="filmDataDetail">
+                        <div id="filmDataDetailName">
+                            <p>Год издания </p>
+                            <p>Опубликовал пользователем</p>
+                        </div>
+                        <div id="filmDataDetailInfo">
+                            <p>@film.Year </p>
+                            <p>@film.Publisher</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="filmDescription">
+                <p>@film.Description</p>
+            </div>
+
+        </div>
+    }
+}

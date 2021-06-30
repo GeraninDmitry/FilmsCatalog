@@ -32,15 +32,17 @@ namespace FilmsCatalog.Controllers
         {
             try
             {
-                var filmsAmount = await Task.Factory.StartNew(() => m_DbDbContext.FilmList.
-                    AsNoTracking().
-                    Count());
+                var filmsAmount = await Task.Factory.StartNew(() => m_DbDbContext
+					.FilmList
+					.AsNoTracking()
+					.Count());
 
                 var paginationHelper = new PaginationHelper(filmsAmount);
                 var validatedPage = paginationHelper.ValidateSelectedPage(selectedPage);
                 var paginationType = paginationHelper.DeterminePaginationType(validatedPage);
 
-                var filmsPage = await Task.Factory.StartNew(() => m_DbDbContext.FilmList
+                var filmsPage = await Task.Factory.StartNew(() => m_DbDbContext
+					.FilmList
                     .CreatePage(m_DbDbContext, validatedPage, PaginationHelper.PageSize)
                     .ToList());
 
