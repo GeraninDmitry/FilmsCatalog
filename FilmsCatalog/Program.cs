@@ -16,7 +16,10 @@ namespace FilmsCatalog
 
         public static void Main(string[] args)
 		{
-			var webHost = new WebHostBuilder().UseIIS().UseContentRoot(Directory.GetCurrentDirectory())
+			var webHost = new WebHostBuilder()
+				.UseIIS()
+				//.UseKestrel()
+				.UseContentRoot(Directory.GetCurrentDirectory())
 				.ConfigureAppConfiguration((hostingContext, config) =>
 				{
 					config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);

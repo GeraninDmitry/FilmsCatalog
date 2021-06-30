@@ -40,19 +40,15 @@ namespace FilmsCatalog.Controllers
                 var validatedPage = paginationHelper.ValidateSelectedPage(selectedPage);
                 var paginationType = paginationHelper.DeterminePaginationType(validatedPage);
 
-                var filmPage = await Task.Factory.StartNew(() => m_DbDbContext.FilmList
-                    .AsNoTracking()
-					.OrderBy(film => film.PublishDate)
-                    .Page(validatedPage, PaginationHelper.PageSize)
-                    .AsEnumerable()
-                    .ToViewModel()
+                var filmsPage = await Task.Factory.StartNew(() => m_DbDbContext.FilmList
+                    .CreatePage(m_DbDbContext, validatedPage, PaginationHelper.PageSize)
                     .ToList());
 
                 ViewBag.PagesAmount = paginationHelper.PagesAmount;
                 ViewBag.PaginationType = paginationType;
                 ViewBag.SelectedPage = validatedPage;
 
-                return View(filmPage);
+                return View(filmsPage);
             }
             catch (Exception ex)
             {
