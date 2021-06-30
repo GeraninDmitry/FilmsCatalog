@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using FilmsCatalog.Models;
+using DataLayer.ViewModels;
+using FilmsCatalog.Filters.Actions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 
@@ -21,12 +22,14 @@ namespace FilmsCatalog.Controllers
             _logger = logger;
         }
 
+		[Log]
         [HttpGet]
         public IActionResult SignUp()
         {
             return View();
         }
 
+		[Log]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(SignUpViewModel model)
@@ -63,12 +66,14 @@ namespace FilmsCatalog.Controllers
             return View(model);
         }
 
+		[Log]
         [HttpGet]
         public IActionResult SignIn(string returnUrl = null)
         {
             return View(new SignInViewModel {ReturnUrl = returnUrl});
         }
 
+		[Log]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignIn(SignInViewModel model)
@@ -94,6 +99,7 @@ namespace FilmsCatalog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+		[Log]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

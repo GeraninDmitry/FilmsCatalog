@@ -1,3 +1,11 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<DataLayer.ViewModels.FilmViewModel>
+
+<link rel="stylesheet" href="~/css/Home/Index.css" />
+<script src="~/tp/Home/Index.js" asp-append-version="true"></script>
+
+<div id="mainPanel">
+
+    @(await Html.PartialAsync("FilmPanelPartial", Model))
+    @(await Html.PartialAsync("PaginationPartial", new ViewDataDictionary(ViewData)))
+
+</div>

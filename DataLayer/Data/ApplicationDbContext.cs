@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using DataLayer.Models;
+using DataLayer.ViewModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using FilmsCatalog.Models;
 
-namespace FilmsCatalog.Data
+namespace DataLayer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
@@ -13,5 +11,7 @@ namespace FilmsCatalog.Data
             : base(options)
         {
         }
+
+		public DbSet<Film> FilmList { get; set; }
     }
 }

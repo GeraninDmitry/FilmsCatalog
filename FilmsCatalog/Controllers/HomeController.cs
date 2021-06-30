@@ -1,37 +1,66 @@
-﻿using FilmsCatalog.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DataLayer.Data;
+using DataLayer.ViewModels;
+using FilmsCatalog.Filters.Actions;
+using FilmsCatalog.Helpers.Controllers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using ServiceLayer.Extensions;
 
 namespace FilmsCatalog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        readonly ILogger<HomeController> m_Logger;
+        readonly ApplicationDbContext m_DbDbContext;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
         {
-            _logger = logger;
+            m_Logger = logger;
+            m_DbDbContext = dbContext;
         }
 
-        public IActionResult Index()
+        [Log]
+        public async Task<IActionResult> Index(int selectedPage)
         {
-            return View();
+            try
+            {
+                var filmsAmount = await Task.Factory.StartNew(() => m_DbDbContext.FilmList.
+                    AsNoTracking().
+                    Count());
+
+                var paginationHelper = new PaginationHelper(filmsAmount);
+                var validatedPage = paginationHelper.ValidateSelectedPage(selectedPage);
+                var paginationType = paginationHelper.DeterminePaginationType(validatedPage);
+
+                var filmPage = await Task.Factory.StartNew(() => m_DbDbContext.FilmList
+                    .AsNoTracking()
+					.OrderBy(film => film.PublishDate)
+                    .Page(validatedPage, PaginationHelper.PageSize)
+                    .AsEnumerable()
+                    .ToViewModel()
+                    .ToList());
+
+                ViewBag.PagesAmount = paginationHelper.PagesAmount;
+                ViewBag.PaginationType = paginationType;
+                ViewBag.SelectedPage = validatedPage;
+
+                return View(filmPage);
+            }
+            catch (Exception ex)
+            {
+                m_Logger.LogError("Ошибка - {Exception}", ex.Message);
+            }
+
+            return RedirectToAction("Error", "Error");
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

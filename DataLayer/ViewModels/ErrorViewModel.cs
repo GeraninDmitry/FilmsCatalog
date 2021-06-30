@@ -1,6 +1,4 @@
-using System;
-
-namespace FilmsCatalog.Models
+namespace DataLayer.ViewModels
 {
     public class ErrorViewModel
     {

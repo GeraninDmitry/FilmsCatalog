@@ -1,0 +1,118 @@
+﻿@using FilmsCatalog.Helpers.Enums
+
+@{
+    var selectedPage = ViewBag.SelectedPage;
+    var pagesAmount = ViewBag.PagesAmount;
+    var paginationType = ViewBag.PaginationType;
+}
+
+@switch (paginationType)
+{
+    case PaginationType.Start:
+        {
+            <div class="pagination">
+                <p id="backPage">&laquo;</p>
+                @if (selectedPage == 1)
+                {<p class="pageNumber active">1</p> }
+                else
+                { <p class="pageNumber">1</p>}
+                @if (selectedPage == 2)
+                {<p class="pageNumber active">2</p> }
+                else
+                { <p class="pageNumber">2</p>}
+                @if (selectedPage == 3)
+                {<p class="pageNumber active">3</p> }
+                else
+                { <p class="pageNumber">3</p>}
+                @if (selectedPage == 4)
+                {<p class="pageNumber active">4</p> }
+                else
+                { <p class="pageNumber">4</p>}
+                @if (selectedPage == 5)
+                {<p class="pageNumber active">5</p> }
+                else
+                { <p class="pageNumber">5</p>}
+                @if (selectedPage == 6)
+                {<p class="pageNumber active">6</p> }
+                else
+                { <p class="pageNumber">6</p>}
+                <p>...</p>
+                <p class="pageNumber">@pagesAmount</p>
+                <p id="forwardPage">&raquo;</p>
+            </div>
+
+            break;
+        }
+    case PaginationType.End:
+        {
+            <div class="pagination">
+                <p id="backPage">&laquo;</p>
+                <p class="pageNumber">1</p>
+                <p>...</p>
+                @if (selectedPage == pagesAmount - 5)
+                {<p class="pageNumber active">@(pagesAmount - 5)</p> }
+                else
+                { <p class="pageNumber">@(pagesAmount - 5)</p>}
+                @if (selectedPage == pagesAmount - 4)
+                {<p class="pageNumber active">@(pagesAmount - 4)</p> }
+                else
+                { <p class="pageNumber">@(pagesAmount - 4)</p>}
+                @if (selectedPage == pagesAmount - 3)
+                {<p class="pageNumber active">@(pagesAmount - 3)</p> }
+                else
+                { <p class="pageNumber">@(pagesAmount - 3)</p>}
+                @if (selectedPage == pagesAmount - 2)
+                {<p class="pageNumber active">@(pagesAmount - 2)</p> }
+                else
+                { <p class="pageNumber">@(pagesAmount - 2)</p>}
+                @if (selectedPage == pagesAmount - 1)
+                {<p class="pageNumber active">@(pagesAmount - 1)</p> }
+                else
+                { <p class="pageNumber">@(pagesAmount - 1)</p>}
+                @if (selectedPage == pagesAmount)
+                {<p class="pageNumber active">@pagesAmount</p> }
+            else
+            { <p class="pageNumber">@pagesAmount</p>}
+                <p id="forwardPage">&raquo;</p>
+            </div>
+
+            break;
+        }
+    case PaginationType.Middle:
+        {
+            <div class="pagination">
+                <p id="backPage">&laquo;</p>
+                <p class="pageNumber">1</p>
+                <p>...</p>
+                <p class="pageNumber">@(selectedPage - 2)</p>
+                <p class="pageNumber">@(selectedPage - 1)</p>
+                <p class="pageNumber active">@selectedPage</p>
+                <p class="pageNumber">@(selectedPage + 1)</p>
+                <p class="pageNumber">@(selectedPage + 2)</p>
+                <p>...</p>
+                <p class="pageNumber">@pagesAmount</p>
+                <p id="forwardPage">&raquo;</p>
+            </div>
+
+            break;
+        }
+    case PaginationType.Simple:
+        {
+            <div class="pagination">
+                @{
+                    for (var i = 1; i <= pagesAmount; i++)
+                    {
+                        if (selectedPage == @i)
+                        {
+                            <p class="pageNumber active">@i</p>
+                        }
+                        else
+                        {
+                            <p class="pageNumber">@i</p>
+                        }
+                    }
+                }
+            </div>
+            break;
+        }
+}

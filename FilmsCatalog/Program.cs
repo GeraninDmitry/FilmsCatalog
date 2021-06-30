@@ -27,12 +27,13 @@ namespace FilmsCatalog
 					loggingBuilder.AddConfiguration(builderContext.Configuration.GetSection("Logging"));
 				}).UseStartup<Startup>().Build()
 #if DEBUG
-				.FillDb();
+				.FillDb()
+				.AddDefaultUser();
 #else
             ;
 #endif
 
-            webHost.Run();
+			webHost.Run();
         }
 
     }

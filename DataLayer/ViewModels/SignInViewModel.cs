@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FilmsCatalog.Models
+namespace DataLayer.ViewModels
 {
     public class SignInViewModel
     {

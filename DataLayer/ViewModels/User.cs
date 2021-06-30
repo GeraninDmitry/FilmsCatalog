@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace FilmsCatalog.Models
+namespace DataLayer.ViewModels
 {
     public class User : IdentityUser
     {

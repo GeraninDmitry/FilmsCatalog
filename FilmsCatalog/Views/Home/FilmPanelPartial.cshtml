@@ -1,0 +1,18 @@
+﻿
+<div id="filmsPanel">
+
+    @foreach (var film in Model)
+    {
+        <div class="film">
+
+            <a class="filmImage">
+                <img src="@film.Poster" />
+            </a>
+
+            <div class="filmData">
+                <p class="filmName">@film.Name</p>
+                <p class="filmDirector">@film.Director</p>
+            </div>
+        </div>
+    }
+</div>
