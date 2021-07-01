@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="~/css/Layout.css" />
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
 </head>
 
 <body>
@@ -18,7 +20,7 @@
     <div class="wrapper">
 
         <header>
-            @(await Html.PartialAsync("NavPartial", ViewData))
+            @(await Html.PartialAsync("_NavPartial", ViewData))
         </header>
 
         <main>@RenderBody()</main>

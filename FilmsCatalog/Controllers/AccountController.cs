@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
+using DataLayer.Models;
 using DataLayer.ViewModels;
 using FilmsCatalog.Filters.Actions;
 using Microsoft.AspNetCore.Identity;

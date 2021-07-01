@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Data;
 using DataLayer.Models;
-using DataLayer.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,6 +54,7 @@ namespace FilmsCatalog.Helpers
                         "Фильм снят по мотивам одноимённой автобиографической книги Генриха Харрера, описывающей историю приключений австрийского альпиниста в Тибете в годы Второй мировой войны. В фильме сохранена только общая последовательность событий, многие подробности придуманы.",
                     Year = 1997,
                     Publisher = "Default",
+                    PublisherEmail = "user@mail.ru",
                     Name = "Семь лет в Тибете",
                     PublishDate = DateTime.Now,
                     Guid = Guid.NewGuid().ToString()

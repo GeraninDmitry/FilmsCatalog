@@ -1,0 +1,66 @@
+﻿@using System.Collections.Immutable
+@using System.ComponentModel.DataAnnotations
+@model DataLayer.ViewModels.FilmViewModel
+
+<link rel="stylesheet" href="~/css/Film/AddFilm.css" />
+
+@{
+    IImmutableList<ValidationResult> errors = ViewBag.Errors;
+}
+
+<div id="AddFilmForm">
+    <h2>Добавление фильма</h2>
+
+    <form asp-controller="Film" asp-action="AddFilm" method="post" enctype="multipart/form-data">
+
+        <div>
+            <div class="InputDiv">
+                <label asp-for="Name"></label>
+                <input asp-for="Name">
+                <span asp-validation-for="Name"></span>
+            </div>
+
+            <div class="InputDiv">
+                <label asp-for="Director"></label>
+                <input asp-for="Director">
+                <span asp-validation-for="Director"></span>
+            </div>
+
+            <div class="InputDiv">
+                <label asp-for="RawPoster"></label>
+                <input asp-for="RawPoster" type="file">
+                <span asp-validation-for="RawPoster"></span>
+            </div>
+
+            <div class="InputDiv">
+                <label asp-for="Year"></label>
+                <input asp-for="Year">
+                <span asp-validation-for="Year"></span>
+            </div>
+
+            <div class="InputDiv">
+                <label asp-for="Description"></label>
+                @Html.TextAreaFor(model => model.Description, 8,1, null)
+                <span asp-validation-for="Description"></span>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="Errors"></div>
+
+            <div class="Errors">
+                @{
+
+                    foreach (var error in errors)
+                    {
+                        <p>@error.ErrorMessage</p>
+                    }
+                }
+            </div>
+
+            <div id="AddFilmButtonContainer">
+                <button type="submit" id="AddFilmButton">Добавить</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

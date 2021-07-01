@@ -33,6 +33,7 @@
 #SignInForm span {
     color: red;
     padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 #Errors {

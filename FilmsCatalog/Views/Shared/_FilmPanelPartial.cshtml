@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<DataLayer.ViewModels.FilmViewModel>
 
+<link rel="stylesheet" href="~/css/Shared/FilmPanel.css" />
+
 <div id="filmsPanel">
 
     @foreach (var film in Model)
@@ -7,7 +9,16 @@
         <div class="film">
 
             <a class="filmImage" asp-controller="Film" asp-action="ShowFilmDetails" asp-route-guid=@film.Guid>
-                <img src="@film.Poster" />
+                @{
+                    if (@film.Poster != null)
+                    {
+                        <img src="@film.Poster" />
+                    }
+                    else
+                    {
+                        <img />
+                    }
+                }
             </a>
 
             <div class="filmData">

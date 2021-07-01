@@ -5,7 +5,7 @@
 
 <div id="mainPanel">
 
-    @(await Html.PartialAsync("FilmPanelPartial", Model))
-    @(await Html.PartialAsync("PaginationPartial", new ViewDataDictionary(ViewData)))
+    @(await Html.PartialAsync("_FilmPanelPartial", Model))
+    @(await Html.PartialAsync("_PaginationPartial", new ViewDataDictionary(ViewData)))
 
 </div>

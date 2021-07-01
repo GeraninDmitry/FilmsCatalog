@@ -1,0 +1,9 @@
+﻿
+<link rel="stylesheet" href="~/css/Favorites/ShowFavorites.css" />
+
+@model IEnumerable<DataLayer.ViewModels.FilmViewModel>
+
+<div id="FavoritesPanel">
+    <a id="AddFilmButton" asp-controller="Film" asp-action="AddFilm" method="get">Добавить новую книгу</a>
+    @(await Html.PartialAsync("_FilmPanelPartial", Model))
+</div>

@@ -6,12 +6,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Data;
-using DataLayer.ViewModels;
 using FilmsCatalog.Filters.Actions;
-using FilmsCatalog.Helpers.Controllers;
+using FilmsCatalog.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ServiceLayer.Extensions;
+using ServiceLayer.Helpers;
 
 namespace FilmsCatalog.Controllers
 {
@@ -43,7 +42,7 @@ namespace FilmsCatalog.Controllers
 
                 var filmsPage = await Task.Factory.StartNew(() => m_DbDbContext
 					.FilmList
-                    .CreatePage(m_DbDbContext, validatedPage, PaginationHelper.PageSize)
+					.CreatePage(validatedPage, PaginationHelper.PageSize)
                     .ToList());
 
                 ViewBag.PagesAmount = paginationHelper.PagesAmount;

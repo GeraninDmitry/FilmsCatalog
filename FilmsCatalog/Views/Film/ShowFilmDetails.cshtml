@@ -1,7 +1,11 @@
 ﻿@using DataLayer.ViewModels
-@model FilmViewModel
+@model DataLayer.ViewModels.FilmViewModel
 
 <link rel="stylesheet" href="~/css/film/ShowFilmDetails.css" />
+
+@{
+    var isOwner = ViewBag.IsOwner;
+}
 
 @{
 
@@ -32,6 +36,13 @@
                             <p>@film.Publisher</p>
                         </div>
                     </div>
+
+                    @{
+                        if (isOwner)
+                        {
+                            <a asp-controller="Film" asp-action="UpdateFilm" method="get"  asp-route-guid=@film.Guid>Редактировать</a>
+                        }
+                    }
 
                 </div>
 

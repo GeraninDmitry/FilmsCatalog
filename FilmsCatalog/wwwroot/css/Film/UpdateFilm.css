@@ -1,4 +1,4 @@
-﻿#SignUpForm {
+﻿#UpdateFilmForm {
     display: flex;
     flex-direction: column;
     /*padding-right: 70px;*/
@@ -6,53 +6,59 @@
     font-size: 1.1em;
 }
 
-#SignUpForm span {
-    margin-bottom: 10px;
+.InputDiv {
+    display: flex;
+    flex-direction: column;
 }
 
-    .InputDiv {
-        display: flex;
-        flex-direction: column;
-    }
-
-#SignUpForm h2 {
+#UpdateFilmForm h2 {
     font-size: 1.8em;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
-#SignUpForm input {
+#UpdateFilmForm input {
     width: 400px;
     font-size: 1.3em;
     margin: 10px;
-    margin-right: 0px;
+    margin-right: 0;
+    /*margin-left: 1px;*/
 }
 
-#SignUpForm a {
+#UpdateFilmForm textarea {
+    width: 400px;
+    font-size: 1.3em;
+    margin: 10px;
+    margin-right: 0;
+    /*margin-left: 1px;*/
+    resize: none;
+}
+
+#UpdateFilmForm a {
     text-decoration: underline;
     color: royalblue;
 }
 
-#SignUpForm span {
+#UpdateFilmForm span {
     color: red;
     padding-left: 10px;
     padding-bottom: 10px;
 }
 
-#Errors {
+.Errors {
     color: red;
     font-size: 1.0em;
     margin: 10px;
-    margin-top: 20px;
 }
 
-#SignUpButtonContainer {
+#UpdateFilmButtonContainer {
     display: flex;
     justify-content: flex-end
 }
 
-#SignUpButton {
+#UpdateFilmButton {
     display: flex;
-    width: 350px;
+    width: 250px;
     background-color: black;
     color: white;
     font-family: 'Segoe UI';

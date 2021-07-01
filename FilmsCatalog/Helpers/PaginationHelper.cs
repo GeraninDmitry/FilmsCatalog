@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FilmsCatalog.Helpers.Enums;
 
-namespace FilmsCatalog.Helpers.Controllers
+namespace FilmsCatalog.Helpers
 {
     public class PaginationHelper
     {

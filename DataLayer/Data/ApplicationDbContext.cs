@@ -1,5 +1,4 @@
 ﻿using DataLayer.Models;
-using DataLayer.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

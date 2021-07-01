@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Data;
-using DataLayer.ViewModels;
+using DataLayer.Models;
 
 namespace FilmsCatalog
 {
@@ -50,7 +50,7 @@ namespace FilmsCatalog
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/Error");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
